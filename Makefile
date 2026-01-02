@@ -24,5 +24,8 @@ images=
 docker-up:
 	docker compose up -d --remove-orphans $(images)
 
-up: docker-up composer-install composer-dump-autoload ## start the dev server and vendor
+migrate-fresh:
+	cli/artisan migrate:fresh --seed
+
+up: docker-up composer-install composer-dump-autoload migrate-fresh ## start the dev server and vendor
 
