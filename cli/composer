@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e
+
+docker compose run --rm -u 0:0 app sh -c '
+    rm -rf var/* vendor/autoload.php && \
+    mkdir -p /var/www/.composer/cache && \
+    chown -R www-data:www-data /var/www/.composer'
+
+docker compose run --rm app php -d memory_limit=-1 /usr/bin/composer "$@"
