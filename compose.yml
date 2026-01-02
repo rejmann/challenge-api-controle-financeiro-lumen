@@ -33,7 +33,7 @@ services:
       MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_USER: ${DB_USERNAME}
     volumes:
-      - ./.docker/mysql/dbdata:/var/lib/mysql
+      - dbdata:/var/lib/mysql
     ports:
       - "3388:3306"
     networks:
@@ -42,3 +42,7 @@ services:
 networks:
   laravel:
     driver: bridge
+
+volumes:
+  dbdata:
+    driver: local
